@@ -194,10 +194,18 @@ public class AnalyticGeometryG<T> implements AnalyticGeometry<T, PointG<T>, Segm
 				;
 	}
 	
+	protected T intersectionLowerPlusPartOfFraction(T adx, T ady, SegmentG<T> b) {
+		return arit.multiply(ady, b.dx(arit));
+	}
+	protected T intersectionLowerMinusPartOfFraction(T adx, T ady, SegmentG<T> b) {
+		return arit.multiply(adx, b.dy(arit));
+	}
+	
+	
 	protected T intersectionLowerPartOfFraction(T adx, T ady, SegmentG<T> b) {
 		return arit.subtract(
-				arit.multiply(ady, b.dx(arit)),
-				arit.multiply(adx, b.dy(arit)));
+				intersectionLowerPlusPartOfFraction(adx, ady, b),
+				intersectionLowerMinusPartOfFraction(adx, ady, b));
 	}
 
 }

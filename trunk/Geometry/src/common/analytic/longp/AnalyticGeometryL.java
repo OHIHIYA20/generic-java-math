@@ -206,10 +206,10 @@ public class AnalyticGeometryL implements IntegralAnalyticGeometry<Long, PointL,
 		long adx = a.dx();
 		long ady = a.dy();
 		
-		long upper = (a.p1().x - b.p1().x) * ady - (a.p1().y - b.p1().y) * adx;
-		if (upper == 0)
+		long lower = ady * b.dx()- adx * b.dy();
+		if (lower == 0)
 			return null;
-		return new Fraction(upper, ady * b.dx()- adx * b.dy());
+		return new Fraction((a.p1().x - b.p1().x) * ady - (a.p1().y - b.p1().y) * adx, lower);
 	}
 		
 	private PointG<Fraction> intersectionPoint(SegmentL a, SegmentL b, Fraction s) {

@@ -64,11 +64,10 @@ public class IntegralAnalyticGeometryG<T extends Number> extends AnalyticGeometr
 		T adx = dx(a);
 		T ady = dy(a);
 		
-		T upper = intersectionUpperPartOfFraction(a, b, adx, ady);
-		if (arit.equals(upper, arit.zero()))
+		T lower = intersectionLowerPartOfFraction(adx, ady, b);
+		if (arit.equals(lower, arit.zero()))
 			return null;
-		return new GenericFraction<T>(upper, 
-				intersectionLowerPartOfFraction(adx, ady, b), arit);
+		return new GenericFraction<T>(intersectionUpperPartOfFraction(a, b, adx, ady), lower, arit);
 	}
 	
 	private PointG<GenericFraction<T>> intersectionPoint(SegmentG<T> a, SegmentG<T> b, GenericFraction<T> s) {

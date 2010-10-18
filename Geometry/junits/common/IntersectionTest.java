@@ -1,7 +1,6 @@
 package common;
 
 import java.math.BigInteger;
-import java.util.Random;
 
 import junit.framework.Assert;
 
@@ -26,6 +25,7 @@ import fraction.GenericFraction;
 public class IntersectionTest
 {
 	private void testOneIntersection(SegmentL s1, SegmentL s2) {
+		System.out.println(s1 + " " + s2);
 		AnalyticGeometryL geomL = AnalyticGeometryL.getInstance();
 		PointG<Fraction> rezL = geomL.intersection(s1, s2);
 		System.out.println(rezL);
@@ -86,15 +86,22 @@ public class IntersectionTest
 
 	@Test
 	public void testIntersection() {
-		testOneIntersection(new SegmentL(0,0,2,2),
-				new SegmentL(0,2,2,0));
+		testOneIntersection(new SegmentL(0,0,2,2), new SegmentL(0,2,2,0));
 		
-		Random rand = new Random(11707);
-		for(int i = 0; i < 100000; i++) {
-			testOneIntersection(
-					new SegmentL(rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000)),
-					new SegmentL(rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000)));
-		}
+		testOneIntersection(new SegmentL(-1,-1,1,1), new SegmentL(-1,1,1,-1));
+		testOneIntersection(new SegmentL(0,0,1,1), new SegmentL(0,0,1,0));
+		testOneIntersection(new SegmentL(0,0,1,1), new SegmentL(0,0,2,2));
+		testOneIntersection(new SegmentL(-100, 9999900, -100, -100), new SegmentL(-100, 9999900, 0, 0));
+
+		testOneIntersection(new SegmentL(0,0,2,2), new SegmentL(2,0,4,2));
+
+
+//		Random rand = new Random(11707);
+//		for(int i = 0; i < 100000; i++) {
+//			testOneIntersection(
+//					new SegmentL(rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000)),
+//					new SegmentL(rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000), rand.nextInt(1000000)));
+//		}
 		
 	}
 }

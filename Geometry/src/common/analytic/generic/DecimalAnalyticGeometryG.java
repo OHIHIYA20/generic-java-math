@@ -37,13 +37,13 @@ public class DecimalAnalyticGeometryG<T> extends AnalyticGeometryG<T> implements
 		T adx = a.dx(arit);
 		T ady = a.dy(arit);
 		
-		T upperPlus = intersectionUpperPlusPartOfFraction(a, b, ady);
-		T upperMinus = intersectionUpperMinusPartOfFraction(a, b, adx);
-		if (arit.compare(upperPlus, upperMinus)==0)
+		T lowerPlus = intersectionLowerPlusPartOfFraction(adx, ady, b);
+		T lowerMinus = intersectionLowerMinusPartOfFraction(adx, ady, b);
+		if (arit.compare(lowerPlus, lowerMinus)==0)
 			return null;
 		
-		return arit.divide(arit.subtract(upperPlus, upperMinus), 
-				intersectionLowerPartOfFraction(adx, ady, b));
+		return arit.divide(intersectionUpperPartOfFraction(a, b, adx, ady), 
+				arit.subtract(lowerPlus, lowerMinus));
 	}
 	
 	

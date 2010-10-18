@@ -48,11 +48,11 @@ public class ConvexHullTest
 		double check5 = Utils.Time.secondsPassed(ts5);
 		
 		
-		System.out.println("Quick: " + Utils.Strings.doubleToString(check1) 
-				+ "\tGift: " + Utils.Strings.doubleToString(check2)
-				+"\tQuickLong: "+ Utils.Strings.doubleToString(check3)
-				+"\tQuickBigInt: "+ Utils.Strings.doubleToString(check4)
-				+"\tQuickFraction: "+ Utils.Strings.doubleToString(check5)
+		System.out.println("Quick: " + check1 
+				+ "\tGift: " + check2
+				+"\tQuickLong: "+ check3
+				+"\tQuickBigInt: "+ check4
+				+"\tQuickFraction: "+ check5
 				);
 		Assert.assertEquals(quick, gift);
 		Assert.assertEquals(convertToGLong(quick), quickG);

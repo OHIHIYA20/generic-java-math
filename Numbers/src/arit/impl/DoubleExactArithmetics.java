@@ -70,7 +70,7 @@ public class DoubleExactArithmetics implements DecimalArithmetics<Double>
 			}
 			if ((exponent >>>= 1) != 0)
 			{
-				result *= result;
+				val *= val;
 			}
 		}
 		return result;

@@ -92,6 +92,11 @@ public class GenericComplex<T extends Number> extends ArithmeticNumber<GenericCo
 	}
 
 	@Override
+	public int hashCode() {
+		return real.hashCode() ^ imag.hashCode();
+	}
+	
+	@Override
 	public GenericComplex<T> max(GenericComplex<T> val)
 	{
 		throw new UnsupportedOperationException();

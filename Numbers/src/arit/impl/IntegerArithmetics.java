@@ -65,10 +65,10 @@ public class IntegerArithmetics implements IntegralArithmetics<Integer>
 		    	result *= val;
 		    }
 		    if ((exponent >>>= 1) != 0) {
-		    	result *= result;
+		    	val *= val;
 		    }
 		}
-		return Integer.valueOf(result);
+		return Integer.valueOf(result);	
 	}
 	
 	@Override

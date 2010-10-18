@@ -27,4 +27,6 @@ public abstract class ArithmeticNumber<T extends ArithmeticNumber<T>> extends Nu
 
     @Override
     public abstract boolean equals(Object obj);
+    @Override
+    public abstract int hashCode();
 }

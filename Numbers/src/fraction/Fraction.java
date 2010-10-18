@@ -157,19 +157,21 @@ public class Fraction extends ArithmeticNumber<Fraction>
 	@Override
 	public Fraction pow(int exponent)
 	{
-		long resbr = br;
-		long resim = im;
+		long valbr = br;
+		long valim = im;
+		long resbr = 1;
+		long resim = 0;
 		while (exponent != 0)
 		{
 			if ((exponent & 1) == 1)
 			{
-				resbr *= br;
-				resim *= im;
+				resbr *= valbr;
+				resim *= valim;
 			}
 			if ((exponent >>>= 1) != 0)
 			{
-				resbr *= resbr;
-				resim *= resim;
+				valbr *= valbr;
+				valim *= valim;
 			}
 		}
 		return new Fraction(resbr, resim);

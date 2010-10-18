@@ -7,7 +7,7 @@ public class DoubleRelativeArithmetics extends DoubleExactArithmetics
 	{
 		double x1 = val1;
 		double x2 = val2;
-		return Math.abs(x1-x2)<1e-8*(Math.abs(x1)+Math.abs(x2));
+		return Math.abs(x1-x2)<=1e-8*(Math.abs(x1)+Math.abs(x2));
 	}
 
 	@Override

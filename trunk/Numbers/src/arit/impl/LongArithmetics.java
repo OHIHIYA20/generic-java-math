@@ -75,7 +75,7 @@ public class LongArithmetics implements IntegralArithmetics<Long>
 		    	result *= val;
 		    }
 		    if ((exponent >>>= 1) != 0) {
-		    	result *= result;
+		    	val *= val;
 		    }
 		}
 		return Long.valueOf(result);

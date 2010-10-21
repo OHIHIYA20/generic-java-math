@@ -16,6 +16,11 @@ public class DecimalAnalyticGeometryG<T> extends AnalyticGeometryG<T> implements
 		this.arit = arit;
 	}
 	
+	@Override
+	public DecimalArithmetics<T> arithmetics()
+	{
+		return arit;
+	}
 	
 	public PointG<T> middleOfSegment(SegmentG<T> duz) {
 		return new PointG<T>(
@@ -64,7 +69,7 @@ public class DecimalAnalyticGeometryG<T> extends AnalyticGeometryG<T> implements
 			return null;
 	}
 
-	public PointG<T> intersetcionOfLines(SegmentG<T> a, SegmentG<T> b) {
+	public PointG<T> intersectionOfLines(SegmentG<T> a, SegmentG<T> b) {
 		T s = intersectionFractionOrNull(a, b); 
 		if (s == null)
 			return null;
@@ -74,5 +79,31 @@ public class DecimalAnalyticGeometryG<T> extends AnalyticGeometryG<T> implements
 
 	public static <T> DecimalAnalyticGeometryG<T> create(DecimalArithmetics<T> arit) {
 		return new DecimalAnalyticGeometryG<T>(arit);
+	}
+
+	@Override
+	public T toFraction(T t) {
+		return t;
+	}
+	
+
+	@Override
+	public PointG<T> toFraction(PointG<T> p)
+	{
+		return p;
+	}
+
+
+	@Override
+	public SegmentG<T> toFraction(SegmentG<T> s)
+	{
+		return s;
+	}
+
+
+	@Override
+	public DecimalAnalyticGeometry<T, PointG<T>, SegmentG<T>> toDecimalGeometry()
+	{
+		return this;
 	}
 }

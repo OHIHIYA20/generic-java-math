@@ -23,9 +23,20 @@ public class IntegralAnalyticGeometryG<T extends Number> extends AnalyticGeometr
 	}
 
 	@Override
+	public IntegralArithmetics<T> arithmetics()
+	{	
+		return arit;
+	}
+	
+	@Override
+	public GenericFraction<T> toFraction(T t) {
+		return new GenericFraction<T>(t, arit);
+	}
+	
+	@Override
 	public PointG<GenericFraction<T>> toFraction(PointG<T> p)
 	{
-		return new PointG<GenericFraction<T>>(new GenericFraction<T>(p.x(), arit), new GenericFraction<T>(p.y(), arit));
+		return new PointG<GenericFraction<T>>(toFraction(p.x()), toFraction(p.y()));
 	}
 	
 	@Override

@@ -3,11 +3,10 @@ package common.analytic.longp;
 import java.util.Comparator;
 
 import utils.Utils;
-import arit.Arithmetics;
 import arit.impl.LongArithmetics;
 
 import common.analytic.IntegralAnalyticGeometry;
-import common.analytic.generic.DecimalAnalyticGeometryG;
+import common.analytic.optimizations.AnalyticGeometryFraction;
 import common.point.PointG;
 import common.point.PointL;
 import common.segment.SegmentG;
@@ -18,7 +17,7 @@ import fraction.Fraction;
 public class AnalyticGeometryL implements IntegralAnalyticGeometry<Long, PointL, SegmentL, Fraction, PointG<Fraction>, SegmentG<Fraction>>
 {
 	@Override
-	public Arithmetics<Long> arithmetics()
+	public LongArithmetics arithmetics()
 	{
 		return LongArithmetics.getInstance();
 	}
@@ -167,6 +166,11 @@ public class AnalyticGeometryL implements IntegralAnalyticGeometry<Long, PointL,
 		return onWhichSide(d, a)==onWhichSide(d, b);
 	}
 	
+	@Override
+	public Fraction toFraction(Long t)
+	{	
+		return new Fraction(t);
+	}
 	
 	@Override
 	public PointG<Fraction> toFraction(PointL p)
@@ -181,9 +185,9 @@ public class AnalyticGeometryL implements IntegralAnalyticGeometry<Long, PointL,
 	}
 	
 	@Override
-	public DecimalAnalyticGeometryG<Fraction> toDecimalGeometry()
+	public AnalyticGeometryFraction toDecimalGeometry()
 	{
-		return new DecimalAnalyticGeometryG<Fraction>(Fraction.createArithmetics());
+		return AnalyticGeometryFraction.getInstance();
 	}
 	
 	

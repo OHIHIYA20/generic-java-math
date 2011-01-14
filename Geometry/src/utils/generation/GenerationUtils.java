@@ -1,10 +1,12 @@
 package utils.generation;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
 import tuples.Pair;
 
+import common.conversions.Convertor;
 import common.point.PointG;
 import common.point.PointL;
 import common.segment.SegmentG;
@@ -18,7 +20,7 @@ public class GenerationUtils
 	public final static Creator<PointL> creatorPointL = new Creator<PointL>() {
 		@Override
 		public PointL create() {
-			return new PointL(rand.nextInt(1000000), rand.nextInt(1000000));
+			return new PointL(rand.nextInt(50000), rand.nextInt(50000));
 		}		
 	};
 	
@@ -44,26 +46,50 @@ public class GenerationUtils
 		};
 	}
 	
-	public final static Creator<PointG<Double>> creatorPointGDouble = new Creator<PointG<Double>>() {
-		@Override
-		public PointG<Double> create() {
-			return new PointG<Double>((double)rand.nextInt(1000000), (double)rand.nextInt(1000000));
-		}		
-	};
-
-	
-	public static Creator<PointG<Double>> creatorPointGDoubleOnQuaziCircle(final int n) {
+	public static Creator<PointG<Double>> creatorPointGDoubleFromL(final Creator<PointL> creatorPointL) {
 		return new Creator<PointG<Double>>() {
 			@Override
 			public PointG<Double> create() {
-				int r = 700000 + rand.nextInt(700000 / n);
-				double fi = rand.nextDouble() * 2 * Math.PI;
-				return new PointG<Double>((double)(int) (r * Math.cos(fi)), (double)(int) (r * Math.sin(fi)));
-			}
+				return Convertor.FromL.toPointGDouble(creatorPointL.create());
+			}		
 		};
 	}
 	
-	public final static Creator<SegmentL> kreatorDuzi = new Creator<SegmentL>() {
+	public static Creator<PointG<BigInteger>> creatorPointGBigIntFromL(final Creator<PointL> creatorPointL) {
+		return new Creator<PointG<BigInteger>>() {
+			@Override
+			public PointG<BigInteger> create() {
+				return Convertor.FromL.toPointGBigInteger(creatorPointL.create());
+			}		
+		};
+	}
+	
+	public static Creator<SegmentG<BigInteger>> creatorSegmentGBigIntFromL(final Creator<SegmentL> creatorSegmentL) {
+		return new Creator<SegmentG<BigInteger>>() {
+			@Override
+			public SegmentG<BigInteger> create() {
+				return Convertor.FromL.toSegmentGBigInteger(creatorSegmentL.create());
+			}		
+		};
+	}
+	
+	
+	public final static Creator<PointG<Double>> creatorPointGDouble = creatorPointGDoubleFromL(creatorPointL);
+	
+	public static Creator<PointG<Double>> creatorPointGDoubleOnQuaziCircle(final int n) {
+		return creatorPointGDoubleFromL(creatorPointLOnQuaziCircle(n));
+	}
+	
+//	public static <T, P extends APoint<T>, S extends ASegment<T, P>> Creator<S> creatorSegmentFromPoint(final Creator<P> creatorPoint) {
+//		return new Creator<S>() {
+//			@Override
+//			public S create() {
+//				return new S(creatorPoint, creatorPoint);
+//			}
+//		};
+//	}
+	
+	public final static Creator<SegmentL> creatorSegmentL = new Creator<SegmentL>() {
 		@Override
 		public SegmentL create() {
 			return new SegmentL(creatorPointL.create(), creatorPointL.create());

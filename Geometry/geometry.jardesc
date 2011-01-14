@@ -5,7 +5,7 @@
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="/Edgios/EdgiosManifest.txt" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
-        <sealing sealJar="true">
+        <sealing sealJar="false">
             <packagesToSeal/>
             <packagesToUnSeal/>
         </sealing>
@@ -13,7 +13,5 @@
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
         <javaElement handleIdentifier="=Geometry/src"/>
         <javaElement handleIdentifier="=Geometry/junits"/>
-        <file path="/Geometry/.classpath"/>
-        <file path="/Geometry/.project"/>
     </selectedElements>
 </jardesc>

@@ -243,32 +243,36 @@ public class IntegerArithmetics implements IntegralArithmetics<Integer>
 	@Override
 	public int getLowestSetBit(Integer value)
 	{
-		throw new UnsupportedOperationException();
+  	if (value == 0)
+  	  return -1;
+		return Integer.numberOfTrailingZeros(value);
 	}
 
 	@Override
 	public Integer clearBit(Integer value, int n)
 	{
-		throw new UnsupportedOperationException();
+		return value & ~(1 << n);
 	}
 	
 	@Override
 	public Integer flipBit(Integer value, int n)
 	{
-		throw new UnsupportedOperationException();
+	    if (testBit(value, n))
+	        return clearBit(value, n);
+	    else
+	        return setBit(value, n);
 	}
 
 	@Override
 	public Integer setBit(Integer value, int n)
 	{
-		throw new UnsupportedOperationException();
+	    return value | (1 << n);
 	}
 
 	@Override
 	public boolean testBit(Integer value, int n)
-	{		
-		throw new UnsupportedOperationException();
-
+	{ 
+	    return (value & (1 << n)) != 0;
 	}
 
 
